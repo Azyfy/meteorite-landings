@@ -12,6 +12,8 @@ import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 import spaceImg from "./assets/space.jpg"
+import moonImg from "./assets/moon.jpg"
+import normalImg from "./assets/normal.jpg"
 
 import { ref, onMounted } from "vue"
 
@@ -73,6 +75,19 @@ export default {
 
         const spaceTexture = new THREE.TextureLoader().load(spaceImg)
         scene.background = spaceTexture
+
+        const moonTexture = new THREE.TextureLoader().load(moonImg)
+        const normalTexture = new THREE.TextureLoader().load(normalImg)
+
+        const moon = new THREE.Mesh(
+          new THREE.SphereGeometry(3, 32, 32),
+          new THREE.MeshStandardMaterial({
+            map: moonTexture,
+            normalMap: normalTexture
+          })
+        )
+
+        scene.add(moon)
 
         const animate = () => {
           requestAnimationFrame(animate)
