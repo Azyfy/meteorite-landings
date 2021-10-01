@@ -8,7 +8,7 @@
         <p>draggable</p>
       </div>
       <div v-if="meteorites.length" >
-        <div v-for="meteor in meteorites" :key="meteor.id" class="meteor-list" >
+        <div v-for="meteor in meteorites" :key="meteor.id" class="meteor-list" @click="handleClick(meteor)" >
                 <img class="m-icon" src="../assets/Meteor-icon.png" alt="icon">
                 <h3> {{ meteor.name }} </h3>
         </div>
@@ -19,25 +19,35 @@
 
     </div>
 
-
+    <MeteorDetails v-if="showMeteorDetail" :meteor="singleMeteor"  />
 
   </div>
 </template>
 
 <script>
 import getMeteorites from "../services/getMeteorites"
+import MeteorDetails from "../components/MeteorDetails.vue"
 
-import { onMounted } from "vue"
+import { ref, onMounted } from "vue"
 
 export default {
   name: 'Home',
   components: {
-    
+    MeteorDetails
   },
   setup() {
 
     const { meteorites, load } = getMeteorites()
     load()
+
+    let singleMeteor = ref(null) 
+    let showMeteorDetail = ref(false)
+
+    const handleClick = (meteor) => {
+      console.log("click", meteor)
+      singleMeteor.value = meteor
+      showMeteorDetail.value = true
+    }
 
     onMounted(() => {
 
@@ -51,8 +61,6 @@ export default {
         } 
 
         function dragMouseDown(e) {
-          e = e || window.event
-          e.preventDefault()
 
           p3 = e.clientX
           p4 = e.clientY
@@ -62,8 +70,6 @@ export default {
         }
 
         function elementDrag(e) {
-          e = e || window.event
-          e.preventDefault()
 
           p1 = p3 - e.clientX
           p2 = p4 - e.clientY
@@ -82,7 +88,8 @@ export default {
 
     })
 
-    return { meteorites }
+    return { meteorites, handleClick, 
+            singleMeteor, showMeteorDetail }
   },
 }
 </script>
