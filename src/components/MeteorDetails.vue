@@ -3,6 +3,7 @@
         <div id="meteor-details-h2" >
             <h2 > {{ meteor.name }} </h2>
             <span @click.self="closeDetails" id="close" > X </span>
+            <img draggable="false" src="../assets/Meteor-icon2.png" alt="icon">
         </div>
         <div id="meteor-details-p" >
             <p> Mass: {{ meteor.mass }} g </p>
@@ -72,9 +73,18 @@ export default {
         text-align: left;
         z-index: 2;
         color: red;
+        cursor: grab;
+    }
+
+    #meteor-details:active {
+        cursor: grabbing;
     }
 
     #meteor-details-h2 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px;
         border: 1px solid purple;
     }
 
@@ -83,10 +93,19 @@ export default {
     }
 
     #close {
+        position: absolute;
+        top: -5px;
+        right: -5px;
         color: white;
         background-color: crimson;
         border-radius: 50%;
         padding: 5px;
+        cursor: pointer;
+    }
+
+    img {
+        width: 50px;
+        height: 50px;
     }
 
 

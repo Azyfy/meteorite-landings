@@ -114,6 +114,7 @@ h1 {
   width: 100px;
   height: 100px;
   animation: spin 2s linear infinite;
+  cursor: progress; 
 }
 
 @keyframes spin {
@@ -134,6 +135,15 @@ h1 {
   width: 300px;
   left: 5px;
 }
+
+#meteor-container-h2 {
+  cursor: grab;
+}
+
+#meteor-container-h2:active {
+  cursor: grabbing;
+}
+
 
 .meteor-list {
   display: flex;
