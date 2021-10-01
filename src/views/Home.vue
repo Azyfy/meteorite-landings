@@ -8,7 +8,14 @@
         <p>draggable</p>
       </div>
       <div v-if="meteorites.length" >
-        <div v-for="meteor in meteorites" :key="meteor.id" class="meteor-list" @click="handleClick(meteor)" >
+
+        <div>
+          <div class="meteorite-section" >
+            <span v-for="number in calculateLength(meteorites.length)" :key="number" @click="calculateSplice(number)" > {{ number }} </span>
+          </div>
+        </div>
+
+        <div v-for="meteor in meteorites.slice(sliceIndexStart, sliceIndexEnd )" :key="meteor.id" class="meteor-list" @click="handleClick(meteor)" >
                 <img class="m-icon" src="../assets/Meteor-icon.png" alt="icon">
                 <h3> {{ meteor.name }} </h3>
         </div>
@@ -43,6 +50,9 @@ export default {
     let singleMeteor = ref(null) 
     let showMeteorDetail = ref(false)
 
+    let sliceIndexStart = ref(0)
+    let sliceIndexEnd = ref(100)
+
     const handleClick = (meteor) => {
       console.log("click", meteor)
       singleMeteor.value = meteor
@@ -51,6 +61,19 @@ export default {
 
     const closeDetails = () => {
       showMeteorDetail.value = false
+    }
+
+    const calculateLength = (length) => {
+
+      let calculateLength = length / 100
+
+      return calculateLength
+    }
+
+    const calculateSplice = (number) => {
+
+      sliceIndexStart.value = (number * 100) - 100
+      sliceIndexEnd.value =   number * 100
     }
 
     onMounted(() => {
@@ -94,7 +117,8 @@ export default {
 
     return { meteorites, handleClick, 
             singleMeteor, showMeteorDetail,
-            closeDetails }
+            closeDetails, sliceIndexStart, sliceIndexEnd,
+            calculateLength, calculateSplice }
   },
 }
 </script>
@@ -152,7 +176,17 @@ h1 {
   height: 50px;
   gap: 10px;
   align-items: center;
-
 }
+
+.meteorite-section {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.meteorite-section span {
+  cursor: pointer;
+}
+
 
 </style>
