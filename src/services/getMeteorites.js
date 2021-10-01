@@ -11,7 +11,7 @@ const getMeteorites = () => {
             console.log( "MI", meteorites.value )
         }
         catch (err) {
-            console.log(error.message)
+            console.log(err.message)
         }
     }
 
