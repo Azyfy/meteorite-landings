@@ -94,8 +94,8 @@ export default {
             torus.rotation.y += 0.005
             torus.rotation.z += 0.01
 
-            camera.position.y += 0.001
-            camera.position.x += 0.001
+            camera.position.y += 0.005
+            camera.position.x += 0.005
           
 
             controls.update()
