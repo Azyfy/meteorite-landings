@@ -19,7 +19,7 @@
 
     </div>
 
-    <MeteorDetails v-if="showMeteorDetail" :meteor="singleMeteor"  />
+    <MeteorDetails v-if="showMeteorDetail" :meteor="singleMeteor" @close="closeDetails"  />
 
   </div>
 </template>
@@ -47,6 +47,10 @@ export default {
       console.log("click", meteor)
       singleMeteor.value = meteor
       showMeteorDetail.value = true
+    }
+
+    const closeDetails = () => {
+      showMeteorDetail.value = false
     }
 
     onMounted(() => {
@@ -89,7 +93,8 @@ export default {
     })
 
     return { meteorites, handleClick, 
-            singleMeteor, showMeteorDetail }
+            singleMeteor, showMeteorDetail,
+            closeDetails }
   },
 }
 </script>

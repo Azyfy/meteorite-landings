@@ -1,14 +1,16 @@
 <template>
   <div id="meteor-details">
-      <div id="meteor-details-h2" >
-           <h2 > {{ meteor.name }} </h2>
-      </div>
-      <p> Mass: {{ meteor.mass }} g </p>
-      <p> Year: {{ meteor.year.slice(0, 10) }}  </p>
-      <p> Status: {{ meteor.fall }}  </p>
-      <p> Class: {{ meteor.recclass }}  </p>
-      <p> Location: latitude {{ meteor.geolocation.latitude }} - longitude {{ meteor.geolocation.longitude }}  </p>
-        
+        <div id="meteor-details-h2" >
+            <h2 > {{ meteor.name }} </h2>
+            <span @click.self="closeDetails" id="close" > X </span>
+        </div>
+        <div id="meteor-details-p" >
+            <p> Mass: {{ meteor.mass }} g </p>
+            <p> Year: {{ meteor.year.slice(0, 4) }}  </p>
+            <p> Status: {{ meteor.fall }}  </p>
+            <p> Class: {{ meteor.recclass }}  </p>
+            <p> Location: latitude {{ meteor.geolocation.latitude }} - longitude {{ meteor.geolocation.longitude }}  </p>
+        </div>
   </div>
 </template>
 
@@ -16,6 +18,11 @@
 
 export default {
     props: ["meteor"],
+    methods: {
+        closeDetails() {
+            this.$emit("close")
+        },
+    },
     mounted() {
 
       dragElement(document.getElementById("meteor-details"))
@@ -62,13 +69,24 @@ export default {
     #meteor-details {
         position: absolute;
         left: 50%;
-        margin: auto;
+        text-align: left;
         z-index: 2;
         color: red;
     }
 
     #meteor-details-h2 {
         border: 1px solid purple;
+    }
+
+    #meteor-details-p {
+        padding: 5px;
+    }
+
+    #close {
+        color: white;
+        background-color: crimson;
+        border-radius: 50%;
+        padding: 5px;
     }
 
 
