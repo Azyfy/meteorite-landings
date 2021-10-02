@@ -17,9 +17,11 @@
           </div>
         </div>
 
-        <div v-for="meteor in meteorites.filter(m => m.name.includes(search)).slice(sliceIndexStart, sliceIndexEnd )" :key="meteor.id" class="meteor-list" @click="handleClick(meteor)" >
-                <img class="m-icon" src="../assets/Meteor-icon.png" alt="icon">
-                <h3> {{ meteor.name }} </h3>
+        <div class="scroll" >
+          <div v-for="meteor in meteorites.filter(m => m.name.includes(search)).slice(sliceIndexStart, sliceIndexEnd )" :key="meteor.id" class="meteor-list" @click="handleClick(meteor)" >
+                  <img class="m-icon" src="../assets/Meteor-icon.png" alt="icon">
+                  <h3> {{ meteor.name }} </h3>
+          </div>
         </div>
       </div>
 
@@ -55,10 +57,11 @@ export default {
     let sliceIndexStart = ref(0)
     let sliceIndexEnd = ref(100)
 
+    const listPerSection = 100
+
     let search = ref("")
 
     const handleClick = (meteor) => {
-      console.log("click", meteor)
       singleMeteor.value = meteor
       showMeteorDetail.value = true
     }
@@ -69,15 +72,16 @@ export default {
 
     const calculateLength = (length) => {
 
-      let calculateLength = length / 100
+      let calculateLength = length / listPerSection
 
       return calculateLength
     }
 
     const calculateSplice = (number) => {
 
-      sliceIndexStart.value = (number * 100) - 100
-      sliceIndexEnd.value =   number * 100
+      sliceIndexStart.value = (number * listPerSection) - listPerSection
+      sliceIndexEnd.value =   number * listPerSection
+
     }
 
     onMounted(() => {
@@ -191,6 +195,11 @@ h1 {
 
 .meteorite-section span {
   cursor: pointer;
+}
+
+.scroll {
+  height: 70vh;
+  overflow-y: scroll;
 }
 
 
