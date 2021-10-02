@@ -12,6 +12,14 @@
             <p> Class: {{ meteor.recclass }}  </p>
             <p> Location: latitude {{ meteor.geolocation.latitude }} - longitude {{ meteor.geolocation.longitude }}  </p>
         </div>
+        <GMapMap
+          :center="{ lat: Number(meteor.geolocation.latitude), 
+            lng: Number(meteor.geolocation.longitude) }"
+          :zoom="7"
+          map-type-id="terrain"
+          style="width: 250px; height: 250px"
+        >
+        </GMapMap>
   </div>
 </template>
 

@@ -2,6 +2,7 @@
   <div class="home">
     <div class="header">
       <h1>Meteorite Landings</h1>
+      <p>This comprehensive data set from The Meteoritical Society contains information on all of the known meteorite landings.</p>
     </div>
 
    <div id="meteor-container" >
@@ -33,7 +34,6 @@
     </div>
 
     <MeteorDetails v-if="showMeteorDetail" :meteor="singleMeteor" @close="closeDetails"  />
-
   </div>
 </template>
 
