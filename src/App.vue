@@ -1,22 +1,19 @@
 <template>
   <div  >
    <!-- <Canvas /> -->
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-    </div>
 
- 
-
-  <router-view/>
+    <Meteorite />
   </div>
 </template>
 
 <script>
 import Canvas from "./components/Canvas.vue"
+import Meteorite from "./components/Meteorite.vue"
 
 export default {
   components: {
-    Canvas
+    Canvas,
+    Meteorite
   },
   setup() {
     

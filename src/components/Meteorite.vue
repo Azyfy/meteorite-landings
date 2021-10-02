@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-   <h1>HOME</h1>
+    <div class="header">
+      <h1>Meteorite Landings</h1>
+    </div>
 
    <div id="meteor-container" >
       <div id="meteor-container-h2" >
@@ -201,6 +203,5 @@ h1 {
   height: 70vh;
   overflow-y: scroll;
 }
-
 
 </style>
