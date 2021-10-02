@@ -6,6 +6,8 @@
       <div id="meteor-container-h2" >
         <h2 >Meteorites</h2>
         <p>draggable</p>
+        <input type="text" v-model="search" >
+        {{ search }}
       </div>
       <div v-if="meteorites.length" >
 
@@ -15,7 +17,7 @@
           </div>
         </div>
 
-        <div v-for="meteor in meteorites.slice(sliceIndexStart, sliceIndexEnd )" :key="meteor.id" class="meteor-list" @click="handleClick(meteor)" >
+        <div v-for="meteor in meteorites.filter(m => m.name.includes(search)).slice(sliceIndexStart, sliceIndexEnd )" :key="meteor.id" class="meteor-list" @click="handleClick(meteor)" >
                 <img class="m-icon" src="../assets/Meteor-icon.png" alt="icon">
                 <h3> {{ meteor.name }} </h3>
         </div>
@@ -52,6 +54,8 @@ export default {
 
     let sliceIndexStart = ref(0)
     let sliceIndexEnd = ref(100)
+
+    let search = ref("")
 
     const handleClick = (meteor) => {
       console.log("click", meteor)
@@ -118,7 +122,8 @@ export default {
     return { meteorites, handleClick, 
             singleMeteor, showMeteorDetail,
             closeDetails, sliceIndexStart, sliceIndexEnd,
-            calculateLength, calculateSplice }
+            calculateLength, calculateSplice,
+            search }
   },
 }
 </script>
