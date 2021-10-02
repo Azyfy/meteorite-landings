@@ -2,17 +2,16 @@
   <div class="home">
     <div class="header">
       <h1>Meteorite Landings</h1>
-      <p>This comprehensive data set from The Meteoritical Society contains information on all of the known meteorite landings.</p>
+      <p>Meteorite information on all of the known meteorite landings.</p>
     </div>
 
    <div id="meteor-container" >
       <div id="meteor-container-h2" >
         <h2 >Meteorites</h2>
         <p>draggable</p>
-        <input type="text" v-model="search" >
-        {{ search }}
       </div>
       <div v-if="meteorites.length" >
+        <input type="text" v-model="search" >
 
         <div>
           <div class="meteorite-section" >
@@ -138,16 +137,17 @@ export default {
 h1 {
   position: relative;
   z-index: 1;
-  color: yellow;
+
+  text-shadow:  -3px 3px black;
 }
 
 .loader {
-  margin: auto;
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+  margin: 25px auto;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #82cbff;
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   animation: spin 2s linear infinite;
   cursor: progress; 
 }
@@ -168,7 +168,8 @@ h1 {
   position: absolute;
   z-index: 1;
   width: 300px;
-  left: 5px;
+  left: 25px;
+  background-color: rgba(0,0,0,0.7);
 }
 
 #meteor-container-h2 {
@@ -182,16 +183,24 @@ h1 {
 
 .meteor-list {
   display: flex;
-  border: 1px solid red;
-  background-color: #3498db;
+  border: 1px solid white;
+  color: white;
+  background-color: rgba(35, 52, 104, 0.3);
   height: 50px;
   gap: 10px;
   align-items: center;
 }
 
+.meteor-list:hover {
+  background-color: rgba(35, 52, 104, 0.8);
+  cursor: pointer;
+  color: rgb(250, 250, 92);
+}
+
 .meteorite-section {
   display: flex;
-  gap: 5px;
+  padding: 10px 0;
+  gap: 7px;
   justify-content: center;
 }
 
@@ -200,8 +209,12 @@ h1 {
 }
 
 .scroll {
-  height: 70vh;
+  height: 50vh;
   overflow-y: scroll;
+}
+
+input {
+  border-radius: 5px;
 }
 
 </style>

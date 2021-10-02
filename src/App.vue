@@ -1,7 +1,7 @@
 <template>
   <div  >
    <!-- <Canvas /> -->
-
+   <Canvas /> 
     <Meteorite />
   </div>
 </template>
@@ -23,11 +23,16 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: serif, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: rgb(250, 250, 92);
+  
+}
+
+body {
+  background-color: black;
 }
 
 </style>

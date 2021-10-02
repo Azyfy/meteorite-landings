@@ -17,7 +17,6 @@ export default {
         const canvasEl = ref(null)
 
         onMounted(() => {
-            console.log("here", canvasEl.value) 
 
             const scene = new THREE.Scene()  // scene == container
 
@@ -119,6 +118,7 @@ export default {
 <style>
 canvas {
   position: fixed;
+  z-index: -1;
   top: 0;
   left: 0;
 }

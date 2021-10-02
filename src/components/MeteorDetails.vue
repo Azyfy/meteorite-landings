@@ -6,20 +6,22 @@
             <img draggable="false" src="../assets/Meteor-icon2.png" alt="icon">
         </div>
         <div id="meteor-details-p" >
-            <p> Mass: {{ meteor.mass }} g </p>
-            <p> Year: {{ meteor.year.slice(0, 4) }}  </p>
-            <p> Status: {{ meteor.fall }}  </p>
-            <p> Class: {{ meteor.recclass }}  </p>
-            <p> Location: latitude {{ meteor.geolocation.latitude }} - longitude {{ meteor.geolocation.longitude }}  </p>
+            <p v-if="meteor.mass" > Mass: {{ meteor.mass }} g </p>
+            <p v-if="meteor.year" > Year: {{ meteor.year.slice(0, 4) }}  </p>
+            <p v-if="meteor.fall" > Status: {{ meteor.fall }}  </p>
+            <p v-if="meteor.recclass" > Class: {{ meteor.recclass }}  </p>
+            <p v-if="meteor.geolocation" > Location: latitude {{ meteor.geolocation.latitude }} - longitude {{ meteor.geolocation.longitude }}  </p>
         </div>
-        <GMapMap
+        <div class="map">
+          <GMapMap
           :center="{ lat: Number(meteor.geolocation.latitude), 
             lng: Number(meteor.geolocation.longitude) }"
           :zoom="7"
           map-type-id="terrain"
           style="width: 250px; height: 250px"
-        >
-        </GMapMap>
+          >
+          </GMapMap>
+        </div>
   </div>
 </template>
 
@@ -74,14 +76,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     #meteor-details {
         position: absolute;
         left: 50%;
         text-align: left;
         z-index: 2;
-        color: red;
         cursor: grab;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 20px;
     }
 
     #meteor-details:active {
@@ -93,18 +96,20 @@ export default {
         align-items: center;
         justify-content: space-between;
         padding: 5px;
-        border: 1px solid purple;
+        border-top: 1px solid white;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 20px 20px 0 0;
+        padding: 0 20px;
     }
 
     #meteor-details-p {
-        padding: 5px;
+        padding: 5px 20px;
     }
 
     #close {
         position: absolute;
         top: -5px;
         right: -5px;
-        color: white;
         background-color: crimson;
         border-radius: 50%;
         padding: 5px;
@@ -114,6 +119,12 @@ export default {
     img {
         width: 50px;
         height: 50px;
+    }
+
+    .map {
+      display: flex;
+      justify-content: center;
+      padding-bottom: 10px;
     }
 
 
