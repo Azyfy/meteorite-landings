@@ -2,7 +2,7 @@
   <div class="home">
     <div class="header">
       <h1>Meteorite Landings</h1>
-      <p>Meteorite information on all of the known meteorite landings.</p>
+      <p>Meteorite information on some of the known meteorite landings.</p>
     </div>
 
    <div id="meteor-container" >
