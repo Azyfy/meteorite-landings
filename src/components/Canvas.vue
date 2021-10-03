@@ -103,7 +103,7 @@ export default {
 
             const normalOneTexture = new THREE.TextureLoader().load(normalImg)
 
-            function createMeteorite (meteoriteTexture, normalTexture, x, y, z) {
+            function createMeteorite (meteoriteTexture, normalTexture) {
 
               const meteorite = new THREE.Mesh(
                 new THREE.SphereGeometry( Math.floor((Math.random() * 7) +1 ) , 32, 32),
@@ -113,33 +113,52 @@ export default {
                 })
               )
 
+              return meteorite
+
+            }
+
+            function positionMeteoriteOnScene ( meteorite, x, y, z ) {
               meteorite.position.z = z
               meteorite.position.setX(x)
               meteorite.position.y = y
 
               scene.add(meteorite)
-
             }
 
-            createMeteorite(meteoriteOneTexture, normalOneTexture, 15, 0, 10)
-            createMeteorite(meteoriteTwoTexture, normalOneTexture, -10, -10, -25)
-            createMeteorite(meteoriteThreeTexture, normalOneTexture, -10, 10, 30)
+            const meteoriteOne = createMeteorite(meteoriteOneTexture, normalOneTexture)
+            const meteoriteTwo = createMeteorite(meteoriteTwoTexture, normalOneTexture)
+            const meteoriteThree = createMeteorite(meteoriteThreeTexture, normalOneTexture)
 
+            positionMeteoriteOnScene(meteoriteOne, 15, 0, 10)
+            positionMeteoriteOnScene(meteoriteTwo, -10, -10, -25)
+            positionMeteoriteOnScene(meteoriteThree, -10, 10, 30)
 
             const animate = () => {
-            requestAnimationFrame(animate)
+              requestAnimationFrame(animate)
 
-            torus.rotation.x += 0.01
-            torus.rotation.y += 0.005
-            torus.rotation.z += 0.01
+              torus.rotation.x += 0.01
+              torus.rotation.y += 0.005
+              torus.rotation.z += 0.01
 
-            camera.position.y += 0.005
-            camera.position.x += 0.005
-          
+              meteoriteOne.rotation.x += 0.001
+              meteoriteOne.rotation.y += 0.005
+              meteoriteOne.rotation.z += 0.001
 
-            controls.update()
+              meteoriteTwo.rotation.x += 0.003
+              meteoriteTwo.rotation.y -= 0.007
+              meteoriteTwo.rotation.z += 0.003
 
-            renderer.render( scene, camera )
+              meteoriteThree.rotation.x -= 0.005
+              meteoriteThree.rotation.y += 0.003
+              meteoriteThree.rotation.z -= 0.003
+
+              camera.position.y += 0.005
+              camera.position.x += 0.005
+            
+
+              controls.update()
+
+              renderer.render( scene, camera )
             }
 
             animate()
