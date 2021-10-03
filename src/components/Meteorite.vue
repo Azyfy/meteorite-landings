@@ -8,7 +8,7 @@
    <div id="meteor-container" >
       <div id="meteor-container-h2" >
         <h2 >Meteorites</h2>
-        <p>draggable</p>
+        <p class="drag-info" >draggable</p>
       </div>
       <div v-if="meteorites.length" >
         <input type="text" v-model="search" >
@@ -211,10 +211,18 @@ h1 {
 .scroll {
   height: 50vh;
   overflow-y: scroll;
+  resize: vertical;
+  border-bottom: 1px solid white;
+  border-top: 1px solid white;
+
 }
 
 input {
   border-radius: 5px;
+}
+
+.drag-info {
+  font-size: 0.7em;
 }
 
 </style>
