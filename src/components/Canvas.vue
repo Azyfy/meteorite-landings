@@ -55,11 +55,13 @@ export default {
             scene.add(pointLight, ambientLight)
 
             //helpers
+            /*
             const lightHelper = new THREE.PointLightHelper(pointLight)  //show position of pointlight
             const gridHelper = new THREE.GridHelper(200, 50)
 
             scene.add(lightHelper, gridHelper)
-
+            */
+           
             const controls = new OrbitControls(camera, renderer.domElement) //update camera position while mouse click dragging 
 
             //stars
