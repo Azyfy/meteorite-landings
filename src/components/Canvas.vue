@@ -64,7 +64,7 @@ export default {
 
             //stars
             const addStar = () => {
-            const geometry = new THREE.SphereGeometry(0.25, 24, 24)
+            const geometry = new THREE.SphereGeometry(0.25, 21, 21)
             const material = new THREE.MeshStandardMaterial( { color: 0xffffff } )
             const star = new THREE.Mesh( geometry, material )
 
@@ -76,7 +76,7 @@ export default {
 
             }
 
-           // Array(200).fill().forEach(addStar)
+            Array(199).fill().forEach(addStar)
 
             //space background
             const spaceTexture = new THREE.TextureLoader().load(spaceImg)
@@ -99,7 +99,7 @@ export default {
             function createMeteorite (meteoriteTexture, normalTexture) {
 
               const meteorite = new THREE.Mesh(
-                new THREE.SphereGeometry( Math.floor((Math.random() * 7) +1 ) , 32, 32),
+                new THREE.SphereGeometry( Math.floor((Math.random() * 5) +2 ) , 32, 32),
                 new THREE.MeshStandardMaterial({
                     map: meteoriteTexture,
                     normalMap: normalTexture
@@ -124,20 +124,20 @@ export default {
 
             positionMeteoriteOnScene(meteoriteOne, 15, 0, 10)
             positionMeteoriteOnScene(meteoriteTwo, -10, -10, -25)
-            positionMeteoriteOnScene(meteoriteThree, -10, 10, 30)
+            positionMeteoriteOnScene(meteoriteThree, -15, 5, 30)
 
             const animate = () => {
               requestAnimationFrame(animate)
 
               meteoriteOne.rotation.x += 0.001
-              meteoriteOne.rotation.y += 0.005
+              meteoriteOne.rotation.y += 0.003
               meteoriteOne.rotation.z += 0.001
 
               meteoriteTwo.rotation.x += 0.003
-              meteoriteTwo.rotation.y -= 0.007
+              meteoriteTwo.rotation.y -= 0.005
               meteoriteTwo.rotation.z += 0.003
 
-              meteoriteThree.rotation.x -= 0.005
+              meteoriteThree.rotation.x -= 0.003
               meteoriteThree.rotation.y += 0.003
               meteoriteThree.rotation.z -= 0.003
 
