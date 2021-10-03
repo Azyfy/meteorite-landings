@@ -46,13 +46,6 @@ export default {
 
             renderer.render( scene, camera ) // draw
 
-            // torus object
-            const geometry = new THREE.TorusGeometry( 10, 3, 16, 100)
-            const material = new THREE.MeshStandardMaterial( { color: 0xDD6347 }) //wrapping paper for object; meshbasicmaterial with wireframe prop true
-            const torus = new THREE.Mesh( geometry, material )
-
-            scene.add(torus)
-
             //lights
             const pointLight = new THREE.PointLight(0xffffff) //light in all directions
             pointLight.position.set(5, 5, 5)
@@ -135,10 +128,6 @@ export default {
 
             const animate = () => {
               requestAnimationFrame(animate)
-
-              torus.rotation.x += 0.01
-              torus.rotation.y += 0.005
-              torus.rotation.z += 0.01
 
               meteoriteOne.rotation.x += 0.001
               meteoriteOne.rotation.y += 0.005
