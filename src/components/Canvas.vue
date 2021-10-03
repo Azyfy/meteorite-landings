@@ -10,6 +10,20 @@ import spaceImg from "../assets/space.jpg"
 import moonImg from "../assets/moon.jpg"
 import normalImg from "../assets/normal.jpg"
 
+import meteor1 from "../assets/meteorite1.jpg"
+import meteor2 from "../assets/meteorite2.jpg"
+import meteor3 from "../assets/meteorite3.jpg"
+import meteor4 from "../assets/meteorite4.jpg"
+import meteor5 from "../assets/meteorite5.jpg"
+import meteor6 from "../assets/meteorite6.jpg"
+import meteor7 from "../assets/meteorite7.jpg"
+import meteor8 from "../assets/meteorite8.jpg"
+import meteor9 from "../assets/meteorite9.jpg"
+import meteor10 from "../assets/meteorite10.jpg"
+import meteor11 from "../assets/meteorite11.jpg"
+import meteor12 from "../assets/meteorite12.jpg"
+import meteor13 from "../assets/meteorite13.jpg"
+
 import { ref, onMounted } from "vue"
 
 export default {
@@ -28,16 +42,18 @@ export default {
 
             renderer.setPixelRatio( window.devicePixelRatio )
             renderer.setSize( window.innerWidth, window.innerHeight )
-            camera.position.setZ(30)
+            camera.position.setZ(50)
 
             renderer.render( scene, camera ) // draw
 
+            // torus object
             const geometry = new THREE.TorusGeometry( 10, 3, 16, 100)
             const material = new THREE.MeshStandardMaterial( { color: 0xDD6347 }) //wrapping paper for object; meshbasicmaterial with wireframe prop true
             const torus = new THREE.Mesh( geometry, material )
 
             scene.add(torus)
 
+            //lights
             const pointLight = new THREE.PointLight(0xffffff) //light in all directions
             pointLight.position.set(5, 5, 5)
 
@@ -45,6 +61,7 @@ export default {
 
             scene.add(pointLight, ambientLight)
 
+            //helpers
             const lightHelper = new THREE.PointLightHelper(pointLight)  //show position of pointlight
             const gridHelper = new THREE.GridHelper(200, 50)
 
@@ -52,6 +69,7 @@ export default {
 
             const controls = new OrbitControls(camera, renderer.domElement) //update camera position while mouse click dragging 
 
+            //stars
             const addStar = () => {
             const geometry = new THREE.SphereGeometry(0.25, 24, 24)
             const material = new THREE.MeshStandardMaterial( { color: 0xffffff } )
@@ -65,27 +83,49 @@ export default {
 
             }
 
-            Array(200).fill().forEach(addStar)
+           // Array(200).fill().forEach(addStar)
 
+            //space background
             const spaceTexture = new THREE.TextureLoader().load(spaceImg)
             scene.background = spaceTexture
 
-            const moonTexture = new THREE.TextureLoader().load(moonImg)
-            const normalTexture = new THREE.TextureLoader().load(normalImg)
 
-            const moon = new THREE.Mesh(
-            new THREE.SphereGeometry(3, 32, 32),
-            new THREE.MeshStandardMaterial({
-                map: moonTexture,
-                normalMap: normalTexture
-            })
-            )
+            //meteorites
+            const meteorites = [meteor1, meteor2, meteor3,
+                                meteor4, meteor5, meteor6,
+                                meteor7, meteor8, meteor9,
+                                meteor10, meteor11, meteor12,
+                                meteor13]
 
-            moon.position.z = 30
-            moon.position.setX(-10)
+            const meteoriteOneTexture = new THREE.TextureLoader().load(meteorites[Math.floor(Math.random() * 13)])
+            const meteoriteTwoTexture = new THREE.TextureLoader().load(meteorites[Math.floor(Math.random() * 13)])
+            const meteoriteThreeTexture = new THREE.TextureLoader().load(meteorites[Math.floor(Math.random() * 13)])
 
-            scene.add(moon)
-        
+            const normalOneTexture = new THREE.TextureLoader().load(normalImg)
+
+            function createMeteorite (meteoriteTexture, normalTexture, x, y, z) {
+
+              const meteorite = new THREE.Mesh(
+                new THREE.SphereGeometry( Math.floor((Math.random() * 7) +1 ) , 32, 32),
+                new THREE.MeshStandardMaterial({
+                    map: meteoriteTexture,
+                    normalMap: normalTexture
+                })
+              )
+
+              meteorite.position.z = z
+              meteorite.position.setX(x)
+              meteorite.position.y = y
+
+              scene.add(meteorite)
+
+            }
+
+            createMeteorite(meteoriteOneTexture, normalOneTexture, 15, 0, 10)
+            createMeteorite(meteoriteTwoTexture, normalOneTexture, -10, -10, -25)
+            createMeteorite(meteoriteThreeTexture, normalOneTexture, -10, 10, 30)
+
+
             const animate = () => {
             requestAnimationFrame(animate)
 
