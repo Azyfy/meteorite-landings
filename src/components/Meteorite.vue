@@ -72,9 +72,9 @@ export default {
     }
 
     const calculateLength = (length) => {
-      console.log("L", length)
+
       let calculateLength = length / listPerSection
-      console.log("LEN",calculateLength)
+
       return calculateLength
     }
 
