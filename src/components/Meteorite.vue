@@ -15,7 +15,7 @@
 
         <div>
           <div class="meteorite-section" >
-            <span v-for="number in calculateLength(meteorites.length)" :key="number" @click="calculateSplice(number)" > {{ number }} </span>
+            <span v-for="number in Math.round(calculateLength(meteorites.filter(m => m.name.includes(search)).length))" :key="number" @click="calculateSplice(number)" > {{ number }} </span>
           </div>
         </div>
 
@@ -72,9 +72,9 @@ export default {
     }
 
     const calculateLength = (length) => {
-
+      console.log("L", length)
       let calculateLength = length / listPerSection
-
+      console.log("LEN",calculateLength)
       return calculateLength
     }
 
