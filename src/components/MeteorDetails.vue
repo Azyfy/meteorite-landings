@@ -12,7 +12,7 @@
             <p v-if="meteor.recclass" > Class: {{ meteor.recclass }}  </p>
             <p v-if="meteor.geolocation" > Location: latitude {{ meteor.geolocation.latitude }} - longitude {{ meteor.geolocation.longitude }}  </p>
         </div>
-        <div class="map">
+        <div v-if="meteor.geolocation" class="map">
           <GMapMap
           :center="{ lat: Number(meteor.geolocation.latitude), 
             lng: Number(meteor.geolocation.longitude) }"
