@@ -2,7 +2,7 @@
 
 Meteorite information on 999 meteorite landings.
 
-[Link](https://azzryel.github.io/meteorite-landings/)
+[Link](https://azyfy.github.io/meteorite-landings/)
 
 ###### Features
 - Meteorite information
